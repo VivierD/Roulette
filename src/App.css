@@ -1,51 +1,35 @@
-.container-main{
-  display: flex;
-  width: 100%;
-  min-height: 100%;
-}
-
-.container{
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 140px;
-}
-
-.title{
+.container {
+  text-align: center;
+  background-color: #fff;
   padding: 20px;
-  font-size: 20px;
-  font-weight: 200;
-  padding-left: 120px;
-  Font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
-}
-
-.input{
-  display: flex;
-  margin: 10px 10px 20px 130px;
-  font-size: 20px;
-  height: 25px;
-  width: 165px;
-  box-sizing: border-box;
-  Font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
-  text-align: center;
-}
-
-         
-.btn-grad {
-  background-image: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%);
-  margin: 20px 10px 10px 150px;
-  padding: 15px 45px;
-  text-align: center;
-  text-transform: uppercase;
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: white;            
-  box-shadow: 0 0 20px #eee;
   border-radius: 10px;
-  display: block;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align:center;
+}
+
+.btn-grad {
+  background: linear-gradient(to right, #fc466b, #3f5efb);
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
 }
 
 .btn-grad:hover {
-  background-position: right center;
-  color: #fff;
-  text-decoration: none;
+  background: linear-gradient(to right, #3f5efb, #fc466b);
 }

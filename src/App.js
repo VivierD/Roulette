@@ -5,13 +5,15 @@ import "./App.css";
 export default () => {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
+  const [i, setI] = useState(0);
   const [data, setData] = useState([
     {
-      option: "",
+      option: "Saltburn",
       id: 0,
     },
   ]);
 
+  //Détermine le vainqueur de la roue.
   const handleSpinClick = () => {
     if (!mustSpin) {
       const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -23,34 +25,48 @@ export default () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
-    const film = form.elements.film.value;
-
-    const updateData = [
-      ...data,
-      {
-        option: film,
-        id: data.length,
-      },
-    ];
-    setData(updateData);
-  };
-
-  const onStop = (prizeNumber) => {
-    if (data.length === 0) {
-      setMustSpin(false);
-    } else {
-      const index = data.findIndex(({ id }) => id === prizeNumber);
-      if (index !== -1) {
-        setData([...data.slice(0, index), ...data.slice(index + 1)]);
+    const filmInput = form.elements.film; // Ajouter cette ligne pour récupérer l'élément d'entrée film
+  
+    const film = filmInput.value;
+  
+    //Vérifie que l'entrée ne soit pas nulle, et qu'elle n'est pas égale au film précédent
+    if (film !== "") {
+      const lastFilm = data.length > 0 ? data[data.length - 1].option : "";
+  
+      if (film !== lastFilm) {
+        //Remplace la valeur initial du useState si il s'agit du premier film entrée
+        if (data.length === 1 && data[0].option === "Saltburn") {
+          setData([
+            {
+              option: film,
+              id: 0,
+            },
+          ]);
+          //Ajoute des films à la roue
+        } else {
+          const updateData = [
+            ...data,
+            {
+              option: film,
+              id: data.length,
+            },
+          ];
+          setData(updateData);
+        }
+  
+        filmInput.value = ""; // Réinitialiser la valeur de l'entrée film à zéro
       }
-      setMustSpin(false);
     }
   };
 
-  useEffect(() => {
-    console.log(data);
-    console.log(prizeNumber)
-  }, [handleSpinClick]);
+  //Tant qu'il ne reste pas qu'un film, supprime le film sur lequel la roue s'arrête
+  const onStop = (prizeNumber) => {
+    if (data.length > 1) {
+      const updatedData = data.filter((item, index) => index !== prizeNumber);
+      setData(updatedData);
+      setMustSpin(false);
+    }
+  };
 
   return (
     <div className="container-main">
@@ -71,7 +87,7 @@ export default () => {
           onStopSpinning={() => {
             onStop(prizeNumber);
           }}
-          backgroundColors={["#314755", "#26a0da"]}
+          backgroundColors={["#26a0da", "#314755"]}
           outerBorderColor="white"
           radiusLineColor="white"
           fontFamily="Calibri"

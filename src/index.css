@@ -1,7 +1,10 @@
 body {
-  margin: 0px;
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  background: linear-gradient(to right, #314755 0%, #26a0da  51%, #314755  100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #06283D;
 }
