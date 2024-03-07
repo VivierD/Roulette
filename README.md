@@ -9,16 +9,20 @@
 yarn install
 </br>
 yarn add react-custom-roulette
+</br>
+npm install react-confetti
+</br>
+npm i react-use
 </p>
 
 <h2 align="center">Documentation</h2>
 <p>
-ReactJS
-<br/>
 React Custom Roulette : <a href="https://www.npmjs.com/package/react-custom-roulette">https://www.npmjs.com/package/react-custom-roulette</a>
+<br/>
+React-confetti : <a href ="https://www.npmjs.com/package/react-confetti">https://www.npmjs.com/package/react-confetti</a> !</a>
 </p>
 
 <h2 align="center">Credits</h2>
 <p>
-Many thanks to <a href="https://github.com/effectussoftware">Effectus Software</a> for the <a href="https://github.com/effectussoftware/react-custom-roulette">React Custom Roulette</a>
+Many thanks to <a href="https://github.com/effectussoftware">Effectus Software</a> for the <a href="https://github.com/effectussoftware/react-custom-roulette">React Custom Roulette</a>. And to <a href="https://github.com/alampros">alampros</a> for the really cool <a href ="https://www.npmjs.com/package/react-confetti">React confetti</a> !</a>
 </p>
