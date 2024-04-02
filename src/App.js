@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Wheel } from "react-custom-roulette";
 import "./App.css";
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from "react-confetti";
+import RoueAudio from "/Users/Utilisateur/roulette/src/bruitage.mp3"; // Assurez-vous que le chemin est correct
+
 
 export default () => {
   const { width, height } = useWindowSize();
@@ -16,6 +18,8 @@ export default () => {
       id: 0,
     },
   ]);
+  const audioRef = useRef(null); // Référence pour contrôler l'élément audio
+
 
   //Détermine le vainqueur de la roue.
   const handleSpinClick = () => {
@@ -63,6 +67,17 @@ export default () => {
     }
   };
 
+  useEffect(() => {
+    // Jouer l'audio quand mustSpin est true et l'arrêter quand c'est false
+    if (mustSpin) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0; // Remet l'audio au début
+    }
+  }, [mustSpin]); // Se relance chaque fois que mustSpin change
+
+
   //Tant qu'il ne reste pas qu'un film, supprime le film sur lequel la roue s'arrête
   const onStop = (prizeNumber) => {
     if (data.length > 1) {
@@ -82,7 +97,7 @@ export default () => {
   return (
     <div className="container-main">
       <div className="container">
-        <div className="title">La roulette à élimination</div>
+        <div className="title">Movie's BR</div>
         <form onSubmit={handleSubmit}>
           <input
             className="input"
@@ -106,13 +121,12 @@ export default () => {
                 onStop(prizeNumber);
               }}
               backgroundColors={["#26a0da", "#314755"]}
-              outerBorderColor="white"
-              radiusLineColor="white"
               fontFamily="Calibri"
             />
             <button className="btn-grad" onClick={handleSpinClick}>
               SPIN
             </button>
+            <audio ref={audioRef} src={RoueAudio} loop />
           </div>
         )}
       </div>
